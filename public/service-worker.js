@@ -3,7 +3,7 @@
    - Dynamically caches other requests after first load
    - Offline navigation fallback to cached index.html
 */
-const CACHE_VERSION = "moniezi-pwa-v1";
+const CACHE_VERSION = "moniezi-pwa-v2";
 const CACHE_NAME = `moniezi-cache-${CACHE_VERSION}`;
 
 // Resolve an asset relative to the service worker scope (works on GitHub Pages subpaths)
