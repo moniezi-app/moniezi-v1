@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0b1020">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Moniezi Pro | Modern Financial Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Figtree', 'sans-serif'],
+                        brand: ['Space Grotesk', 'sans-serif'],
+                    },
+                    fontSize: {
+                        // Readability upgrade: Bump xs to ~13.6px and sm to ~15.2px for better legibility on mobile
+                        'xs': ['0.85rem', { lineHeight: '1.25rem' }],   
+                        'sm': ['0.95rem', { lineHeight: '1.4rem' }],  
+                    },
+                    colors: {
+                        slatebg: '#e9eff6',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Using Variable Font for Space Grotesk for precise weight control -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Added html2pdf for mobile-friendly PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background-color: white !important; color: black !important; }
+            @page { margin: 0; }
+        }
+        .print-only { display: none; }
+        
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+        }
+
+        input[type="date"] {
+            font-family: 'Figtree', sans-serif;
+        }
+        .dark input[type="date"] {
+            color-scheme: dark;
+        }
+        
+        input:focus, select:focus, textarea:focus, button:focus {
+            outline: none;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="index.css">
+</head>
+<body class="antialiased bg-slatebg dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 selection:bg-blue-500/30 selection:text-blue-600 dark:selection:text-blue-200">
+    <div id="root"></div>
+<script type="module" src="index.tsx"></script>
+
+  <!-- Service Worker (PWA) -->
+  <script type="module">
+    if (import.meta.env.PROD && "serviceWorker" in navigator) {
+      window.addEventListener("load", async () => {
+        try {
+          await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}service-worker.js`);
+        } catch (e) {
+          // ignore
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
